@@ -36,7 +36,7 @@ export class FaceRecognitionService {
       const imageBuffer = Buffer.from(imageBase64, 'base64');
       fs.writeFileSync(filePath, imageBuffer);
 
-      console.log('图片已保存到:', filePath);
+      // console.log('图片已保存到:', filePath);
 
       const pythonResult = await new Promise((resolve, reject) => {
         const pythonProcess = spawn('python', [
@@ -61,17 +61,17 @@ export class FaceRecognitionService {
 
       // 从 Python 返回结果中获取 token
       const { face_token } = pythonResult as { face_token: string };
-      console.log('Python返回的 face_token:', face_token);
+      // console.log('Python返回的 face_token:', face_token);
 
       // 查询数据库
-      console.log('开始查询 components 数据库中的 FaceRecognition 集合');
+      // console.log('开始查询 components 数据库中的 FaceRecognition 集合');
       const user = await db.collection('FaceRecognition').findOne({ face_token });
       console.log('查询条件:', { face_token });
-      console.log('数据库查询结果:', user);
+      // console.log('数据库查询结果:', user);
 
       // 如果还是 null，尝试直接查看集合中的所有文档
-      const allDocs = await db.collection('FaceRecognition').find({}).toArray();
-      console.log('集合中的所有文档:', allDocs);
+      // const allDocs = await db.collection('FaceRecognition').find({}).toArray();
+      // console.log('集合中的所有文档:', allDocs);
 
       if (user) {
         return {

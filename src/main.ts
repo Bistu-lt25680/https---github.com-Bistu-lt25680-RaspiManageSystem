@@ -5,10 +5,9 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   
   app.enableCors({
-    origin: ['http://localhost:5173',
-             'http://localhost:8080',
-             'http://10.153.122.196',
-    ], // 添加您前端的实际地址
+    origin: ['https://8e3f-219-142-113-57.ngrok-free.app',
+              'http://localhost:5173',
+    ],// 添加您前端的实际地址
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,

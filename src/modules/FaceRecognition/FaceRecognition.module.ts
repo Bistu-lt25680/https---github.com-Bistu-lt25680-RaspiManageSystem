@@ -1,14 +1,16 @@
 import { Module } from '@nestjs/common';
 import { FaceRecognitionController } from './FaceRecognition.controller';
-import { FaceRecognitionService } from './FaceRecognition.service';
+import { RecognizeLogService } from './recognizelog.service';
 import { MongooseModule } from '@nestjs/mongoose';
-import { UserSchema } from './schemas/user.schema';
+import { RecognizeLogSchema } from './schemas/recognizelog.schema';
 
 @Module({
-  controllers: [FaceRecognitionController],
-  providers: [FaceRecognitionService],
   imports: [
-    MongooseModule.forFeature([{ name: 'FaceRecognition', schema: UserSchema }])
+    MongooseModule.forFeature([
+      { name: 'RecognizeLog', schema: RecognizeLogSchema }
+    ])
   ],
+  controllers: [FaceRecognitionController],
+  providers: [RecognizeLogService]
 })
 export class FaceRecognitionModule {}
